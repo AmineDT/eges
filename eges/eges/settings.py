@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'eges.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eges',
+        'NAME': 'eges-db',
         'USER': 'postgres',
         'PASSWORD': 'abcd1234',
-        'HOST': 'localhost',  # Or your PostgreSQL host
-        'PORT': '',          # Leave empty to use the default port
+        'HOST': 'db',  # Or your PostgreSQL host
+        'PORT': 5432,          # Leave empty to use the default port
     }
 }
 
