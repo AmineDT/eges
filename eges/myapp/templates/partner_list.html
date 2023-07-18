@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}E.G.E.S Sarl - Collaborateurs{% endblock %}
+
+{% block content %}
+{% load custom_filters %}
+<section class="collaborateurs">
+    <h3>Nos Collaborateurs</h3>
+    <div class="collaborateurs-grid">
+        {% for partner in partners %}
+        <div class="collaborateur-item">
+            <h4>{{ partner.name }}</h4>
+            <div class="collaborateur-image">
+                <img src="data:image/png;base64,{{ partner.picture|base64encode }}" alt="{{ partner.name }} Picture">
+            </div>
+            <p class="collaborateur-description">{{ partner.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}E.G.E.S Sarl - Activities{% endblock %}
+
+{% block content %}
+{% load custom_filters %}
+<section class="activities">
+    <style>
+        /* Add this CSS to style the grid */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px auto;
+        }
+    
+        .activity-item {
+            max-width: 100%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+    
+        .activity-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+    
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    
+        .activity-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Number of lines to show before truncating */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+    <h3>Nos Activités</h3>
+    <div class="activities-grid">
+        {% for activity in activities %}
+        <div class="activity-item">
+            <h4>{{ activity.name }}</h4>
+            {% if activity.picture %}
+            <div class="activity-image">
+                <img src="data:image/png;base64,{{ activity.picture|base64encode }}" alt="{{ activity.name }} Picture">
+            </div>
+            {% endif %}
+            <p class="activity-description">{{ activity.description|truncatewords_html:50 }}</p>
+        </div>
+        {% if forloop.counter|divisibleby:3 and not forloop.last %}
+            </div>
+            <div class="activities-grid">
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
