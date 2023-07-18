@@ -45,6 +45,7 @@ nav a {
     color: #007bff;
     font-weight: bold;
     transition: color 0.2s ease;
+    justify-content: center;
 }
 
 nav a:hover {
@@ -58,6 +59,7 @@ main {
 footer {
     background-color: #f8f9fa;
     padding: 20px;
+    justify-content: center;
 }
 
 /* Homepage (index.html) styles */
