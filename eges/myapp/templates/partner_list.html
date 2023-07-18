@@ -1,20 +1,69 @@
 {% extends 'base.html' %}
 
-{% block title %}E.G.E.S Sarl - Collaborateurs{% endblock %}
+{% block title %}E.G.E.S Sarl - partners{% endblock %}
 
 {% block content %}
 {% load custom_filters %}
-<section class="collaborateurs">
-    <h3>Nos Collaborateurs</h3>
-    <div class="collaborateurs-grid">
+<section class="partners">
+    <style>
+        /* Add this CSS to style the grid */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px auto;
+        }
+    
+        .partner-item {
+            max-width: 100%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+    
+        .partner-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+    
+        .partner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    
+        .partner-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Number of lines to show before truncating */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+    <h3 class="text-center mb-4">Nos Collaborateurs</h3>
+    <div class="partners-grid">
         {% for partner in partners %}
-        <div class="collaborateur-item">
-            <h4>{{ partner.name }}</h4>
-            <div class="collaborateur-image">
-                <img src="data:image/png;base64,{{ partner.picture|base64encode }}" alt="{{ partner.name }} Picture">
-            </div>
-            <p class="collaborateur-description">{{ partner.description }}</p>
-        </div>
+            {% if partner.picture %}
+                <div class="partner-item">
+                    <h4>{{ partner.name }}</h4>
+                    <div class="partner-image">
+                        <img src="data:image/png;base64,{{ partner.picture|base64encode }}" alt="{{ partner.name }} Picture">
+                    </div>
+                    <p class="partner-description">{{ partner.description|truncatewords_html:50 }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for partner in partners %}
+            {% if not partner.picture %}
+                <div class="partner-item">
+                    <h4>{{ partner.name }}</h4>
+                    <p class="partner-description">{{ partner.description|truncatewords_html:50 }}</p>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 </section>

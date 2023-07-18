@@ -44,22 +44,26 @@
         }
     </style>
 
-    <h3>Nos Activités</h3>
+    <h3 class="text-center mb-4">Nos Activités</h3>
     <div class="activities-grid">
         {% for activity in activities %}
-        <div class="activity-item">
-            <h4>{{ activity.name }}</h4>
             {% if activity.picture %}
-            <div class="activity-image">
-                <img src="data:image/png;base64,{{ activity.picture|base64encode }}" alt="{{ activity.name }} Picture">
-            </div>
+                <div class="activity-item">
+                    <h4>{{ activity.name }}</h4>
+                    <div class="activity-image">
+                        <img src="data:image/png;base64,{{ activity.picture|base64encode }}" alt="{{ activity.name }} Picture">
+                    </div>
+                    <p class="activity-description">{{ activity.description|truncatewords_html:50 }}</p>
+                </div>
             {% endif %}
-            <p class="activity-description">{{ activity.description|truncatewords_html:50 }}</p>
-        </div>
-        {% if forloop.counter|divisibleby:3 and not forloop.last %}
-            </div>
-            <div class="activities-grid">
-        {% endif %}
+        {% endfor %}
+        {% for activity in activities %}
+            {% if not activity.picture %}
+                <div class="activity-item">
+                    <h4>{{ activity.name }}</h4>
+                    <p class="activity-description">{{ activity.description|truncatewords_html:50 }}</p>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 </section>
