@@ -15,8 +15,18 @@ COPY . /app/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+# Run migrations
+RUN python manage.py makemigrations myapp
+RUN python manage.py migrate
+
+# Install Gunicorn
+RUN pip install gunicorn
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
 # Expose the appropriate port
 EXPOSE 8000
 
-# Command to run the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Command to run Gunicorn with your Django application
+CMD ["gunicorn", "eges.wsgi:application", "--bind", "0.0.0.0:8000"]

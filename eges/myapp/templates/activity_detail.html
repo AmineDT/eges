@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}{{ activity.name }} - E.G.E.S Sarl{% endblock %}
+
+{% block content %}
+<style>
+    /* Add the CSS styles here within the <style> element */
+    .activity-detail {
+        text-align: center;
+    }
+
+    .activity-image-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .activity-image {
+        width: 400px; /* Set the fixed width for the image */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 100%; /* Ensure the image does not exceed its original width */
+        max-height: 300px; /* Set the maximum height for the image, adjust as needed */
+    }
+
+    .activity-description {
+        text-align: center;
+    }
+
+    .return-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .return-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<section class="activity-detail">
+    <h3 class="text-center mb-4">{{ activity.name }}</h3>
+    <div class="activity-image-container">
+        <img src="data:image/png;base64,{{ activity.picture|base64encode }}" alt="{{ activity.name }} Picture" class="activity-image">
+    </div>
+    <p class="activity-description">{{ activity.description }}</p>
+    <a href="{% url 'activity_list' %}" class="return-button">Retour</a>
+</section>
+{% endblock %}

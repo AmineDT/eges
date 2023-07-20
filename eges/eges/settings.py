@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bxl%#v*38kv*2x&1a@3&&$ck)cq6i0ybsh=a4g)@(3lqkc&#_5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['egesapp.azurewebsites.net', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -75,15 +76,30 @@ WSGI_APPLICATION = 'eges.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'eges',
+        'USER': 'postgres',
+        'PASSWORD': 'abcd1234',
+        'HOST': 'localhost',  # Or your PostgreSQL host
+        'PORT': 5432,          # Leave empty to use the default port
+    }
+}
+"""
+
+# settings.py
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eges-db',
-        'USER': 'postgres',
-        'PASSWORD': 'abcd1234',
-        'HOST': 'db',  # Or your PostgreSQL host
-        'PORT': 5432,          # Leave empty to use the default port
+        'NAME': 'egesdb',       # Add your database name here
+        'USER': 'amine',  # Replace with your PostgreSQL username
+        'PASSWORD': 'AinIfrane149',   # Replace with your PostgreSQL password
+        'HOST': 'egesserv.postgres.database.azure.com',
+        'PORT': 5432,
+        'CONN_MAX_AGE': 600,
     }
 }
 
@@ -122,17 +138,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Add the paths to your app's static directories in STATICFILES_DIRS
 STATICFILES_DIRS = [
-    BASE_DIR / "myapp" / "static",
-    BASE_DIR / "myapp" / "static" / "css",
-    BASE_DIR / "myapp" / "static" / "js",
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'myapp', 'static'),
 ]
 
+
 # Set the directory for collected static files during production
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# Set the STATIC_ROOT for production to collect static files
+STATIC_ROOT = '/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -140,8 +158,19 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    '*',
+    'http://localhost',
+    'http://127.0.0.1',
+    'https://egesapp.azurewebsites.net',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+
+
+# Replace 'egesapp.azurewebsites.net' with the actual domain of your website
+CSRF_COOKIE_DOMAIN = 'https://egesapp.azurewebsites.net'
+
+
+
+CSRF_TRUSTED_ORIGINS = ['https://egesapp.azurewebsites.net']
 
