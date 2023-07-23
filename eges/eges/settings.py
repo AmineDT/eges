@@ -44,13 +44,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'eges.urls'
@@ -142,14 +143,15 @@ STATIC_URL = '/static/'
 
 # Add the paths to your app's static directories in STATICFILES_DIRS
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'myapp', 'static'),
 ]
 
 
 # Set the directory for collected static files during production
 # Set the STATIC_ROOT for production to collect static files
-STATIC_ROOT = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 
 
 # Default primary key field type
@@ -166,11 +168,8 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True
 
 
-
-# Replace 'egesapp.azurewebsites.net' with the actual domain of your website
-CSRF_COOKIE_DOMAIN = 'https://egesapp.azurewebsites.net'
+CSRF_TRUSTED_ORIGINS = ['https://egesapp.azurewebsites.net', 'https://localhost', 'https://127.0.0.1']
 
 
 
-CSRF_TRUSTED_ORIGINS = ['https://egesapp.azurewebsites.net']
 

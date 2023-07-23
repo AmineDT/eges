@@ -17,3 +17,6 @@ def partner_list(request):
 def activity_detail(request, pk):
     activity = get_object_or_404(Activity, pk=pk)
     return render(request, 'activity_detail.html', {'activity': activity})
+
+def contact_view(request):
+    return render(request, 'contact.html')

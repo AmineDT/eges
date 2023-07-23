@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Contact Us</h1>
+  <p><b>Si vous avez des questions ou des demandes, n'hésitez pas à nous contacter via les canaux suivants :</p></b><br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Email</h3>
+      <p>Email: <a href="mailto:contact@eges.com">contact@eges.com</a></p>
+
+      <!-- Add some style to the email section -->
+      <hr class="my-4" style="border-top: 2px solid #007bff; width: 80%;" />
+
+      <!-- Add some style to the WhatsApp section -->
+      <h3>WhatsApp</h3>
+      <p>
+        WhatsApp:
+        <a href="https://wa.me/1234567890" target="_blank">
+          <i class="fab fa-whatsapp mr-2"></i> +1234567890
+        </a>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <h3>Social Media</h3>
+      <ul class="list-unstyled">
+        <li>
+          <a href="https://www.facebook.com/eges" target="_blank">
+            <i class="fab fa-facebook mr-2"></i> Facebook
+          </a>
+        </li>
+        <li>
+          <a href="https://www.twitter.com/eges" target="_blank">
+            <i class="fab fa-twitter mr-2"></i> Twitter
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/eges" target="_blank">
+            <i class="fab fa-instagram mr-2"></i> Instagram
+          </a>
+        </li>
+        <!-- Add other social media links as needed -->
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
