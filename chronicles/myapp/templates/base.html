@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Complex Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-logo">
+                <img src="{% static 'logoresized.png' %}" alt="Complex Blog Logo">
+            </div>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <!-- Add more navigation links here as needed -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Main content goes here -->
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; {% now "Y" %} Complex Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>

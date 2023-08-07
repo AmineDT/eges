@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style="text-align: center;">Welcome to our Complex Blog!</h1>
+    {% for post in latest_posts %}
+        
+            <div class="post-title">
+            <h2><a href="{% url 'blog_post_detail' post.pk %}">{{ post.title }}</a></h2>
+            </div>
+            <div class="post-content">
+            <p>{{ post.content }}</p>
+            </div>
+            <!-- Display other details of the post if needed -->
+    {% endfor %}  
+{% endblock %}

@@ -1,0 +1,28 @@
+version: '3.10'
+
+services:
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_DB: eges-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: abcd1234
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    command: bash -c "python manage.py migrate && gunicorn eges.wsgi:application -b 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    environment:
+      DJANGO_SETTINGS_MODULE: eges.settings
+      DATABASE_URL: postgres://postgres:abcd1234@db:5432/eges-db
+
+volumes:
+  pg_data:

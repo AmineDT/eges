@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <article>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <!-- Display other details of the post if needed -->
+
+        <h2>Comments</h2>
+        {% for comment in comments %}
+            <div>
+                <strong>{{ comment.author }}:</strong>
+                <p>{{ comment.content }}</p>
+                <!-- Display other details of the comment if needed -->
+            </div>
+        {% endfor %}
+
+        <h2>Add a Comment</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Submit Comment</button>
+        </form>
+
+        <h2>Like or Dislike</h2>
+        <form method="post" action="{% url 'like_post' post.pk %}">
+            {% csrf_token %}
+            <input type="submit" name="like_type" value="like"> Like
+            <input type="submit" name="like_type" value="dislike"> Dislike
+        </form>
+    </article>
+{% endblock %}

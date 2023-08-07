@@ -1,0 +1,128 @@
+/* base.css */
+body {
+    font-family: "Arial", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #ebe7ee;
+}
+
+header {
+    background-color: #4b0082; /* Dark purple header background color */
+    padding: 10px;
+    border-radius: 0px 0px 30px 30px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+.navbar-logo img {
+    border-radius: 30px;
+    max-width: 100%;
+    max-height: 100px; /* Set the maximum height as needed */
+}
+
+.navbar-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-links li {
+    margin-left: 20px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #ffd700; /* Golden navbar links color */
+}
+
+
+footer {
+    background-color: #4b0082; /* Dark purple footer background color */
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 30px 30px 0px 0px;
+}
+
+/* Additional styles for the blog content */
+main {
+    padding: 30px;
+    max-width: 1960px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #ffd700; /* Golden heading color */
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #ffd700; /* Golden heading color */
+}
+
+p {
+    color: #160025; /* White paragraph text color */
+}
+
+.post {
+    background-color: #000; /* Black post background color */
+    padding: 0px 20px 0px 20px;
+}
+
+.post-title {
+    background-color: #4b0082; /* Dark purple header background color */
+    color: #ffd700;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 30px 30px 0px 0px;
+}
+
+.post-title a {
+    color: #ffd700 !important;
+}
+
+.post-content {
+    background-color: #f2dfff; /* Black background color */
+    padding: 10px;
+    border-radius: 0px 0px 30px 30px;
+}
+
+/* Additional styles for the footer */
+footer p {
+    color: #ffd700; /* Golden footer text color */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    /* Increase font size for smaller screens */
+    body {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .navbar-logo a {
+        font-size: 20px;
+    }
+}
